@@ -59,27 +59,6 @@ CLASS_NAMES = [
 
 
 # ============================================================
-# FOOD EMOJIS
-# ============================================================
-
-FOOD_EMOJIS = {
-    "Apple": "🍎",
-    "Banana": "🍌",
-    "Bellpepper": "🫑",
-    "Bittergourd": "🥒",
-    "Capsicum": "🫑",
-    "Carrot": "🥕",
-    "Cucumber": "🥒",
-    "Mango": "🥭",
-    "Okra": "🌱",
-    "Orange": "🍊",
-    "Potato": "🥔",
-    "Strawberry": "🍓",
-    "Tomato": "🍅"
-}
-
-
-# ============================================================
 # PAGE CONFIG
 # ============================================================
 
@@ -97,10 +76,6 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-
-    /* ========================================
-       MAIN BACKGROUND
-    ======================================== */
 
     .stApp {
         background:
@@ -122,28 +97,11 @@ st.markdown(
             #0b1120;
     }
 
-
-    /* ========================================
-       MAIN CONTAINER
-    ======================================== */
-
     .block-container {
         max-width: 850px;
         padding-top: 35px;
         padding-bottom: 45px;
     }
-
-
-    /* ========================================
-       HEADER
-    ======================================== */
-
-    .header-icons {
-        text-align: center;
-        font-size: 38px;
-        margin-bottom: 10px;
-    }
-
 
     .main-title {
         text-align: center;
@@ -161,9 +119,8 @@ st.markdown(
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
 
-        margin-bottom: 5px;
+        margin-bottom: 8px;
     }
-
 
     .subtitle {
         text-align: center;
@@ -171,11 +128,6 @@ st.markdown(
         font-size: 17px;
         margin-bottom: 30px;
     }
-
-
-    /* ========================================
-       SECTION TITLE
-    ======================================== */
 
     .section-title {
         color: #f8fafc;
@@ -185,11 +137,6 @@ st.markdown(
         margin-bottom: 12px;
     }
 
-
-    /* ========================================
-       UPLOAD BOX
-    ======================================== */
-
     [data-testid="stFileUploader"] {
         background: #111827;
         border: 2px dashed #475569;
@@ -197,20 +144,10 @@ st.markdown(
         padding: 12px;
     }
 
-
-    /* ========================================
-       IMAGE
-    ======================================== */
-
     [data-testid="stImage"] {
         border-radius: 18px;
         overflow: hidden;
     }
-
-
-    /* ========================================
-       RADIO BUTTONS
-    ======================================== */
 
     div[role="radiogroup"] {
         gap: 10px;
@@ -222,11 +159,6 @@ st.markdown(
         border-radius: 12px;
         padding: 8px 14px;
     }
-
-
-    /* ========================================
-       ANALYZE BUTTON
-    ======================================== */
 
     .stButton > button {
         width: 100%;
@@ -253,7 +185,6 @@ st.markdown(
         transition: 0.25s;
     }
 
-
     .stButton > button:hover {
         transform: translateY(-2px);
 
@@ -262,11 +193,6 @@ st.markdown(
 
         color: white;
     }
-
-
-    /* ========================================
-       METRIC CARDS
-    ======================================== */
 
     [data-testid="stMetric"] {
         background: #111827;
@@ -278,36 +204,17 @@ st.markdown(
             0px 8px 25px rgba(0, 0, 0, 0.20);
     }
 
-
     [data-testid="stMetricLabel"] {
         color: #94a3b8 !important;
     }
-
 
     [data-testid="stMetricValue"] {
         color: #f8fafc !important;
     }
 
-
-    /* ========================================
-       ALERTS
-    ======================================== */
-
     .stAlert {
         border-radius: 14px;
     }
-
-
-    /* ========================================
-       FOOTER
-    ======================================== */
-
-    .footer-text {
-        text-align: center;
-        color: #64748b;
-        font-size: 13px;
-    }
-
 
     hr {
         border-color: #1e293b;
@@ -322,13 +229,6 @@ st.markdown(
 # ============================================================
 # HEADER
 # ============================================================
-
-st.markdown(
-    '<div class="header-icons">'
-    '🍎 🥕 🍊 🍅 🥔 🍓'
-    '</div>',
-    unsafe_allow_html=True
-)
 
 st.markdown(
     '<div class="main-title">'
@@ -364,7 +264,7 @@ try:
 except Exception as e:
 
     st.error(
-        "❌ Unable to load the trained model."
+        "Unable to load the trained model."
     )
 
     st.code(
@@ -380,7 +280,7 @@ except Exception as e:
 
 st.markdown(
     '<div class="section-title">'
-    '📷 Select Food Image'
+    'Select Food Image'
     '</div>',
     unsafe_allow_html=True
 )
@@ -389,8 +289,8 @@ st.markdown(
 input_method = st.radio(
     "Choose image source",
     [
-        "📁 Upload Image",
-        "📸 Take Photo"
+        "Upload Image",
+        "Take Photo"
     ],
     horizontal=True,
     label_visibility="collapsed"
@@ -404,7 +304,7 @@ uploaded_file = None
 # UPLOAD IMAGE
 # ============================================================
 
-if input_method == "📁 Upload Image":
+if input_method == "Upload Image":
 
     uploaded_file = st.file_uploader(
         "Choose a JPG, JPEG or PNG image",
@@ -442,7 +342,7 @@ if uploaded_file is not None:
     except Exception:
 
         st.error(
-            "❌ Could not read the selected image."
+            "Could not read the selected image."
         )
 
         st.stop()
@@ -454,7 +354,7 @@ if uploaded_file is not None:
 
     st.markdown(
         '<div class="section-title">'
-        '🖼️ Image Preview'
+        'Image Preview'
         '</div>',
         unsafe_allow_html=True
     )
@@ -473,7 +373,7 @@ if uploaded_file is not None:
     # ========================================================
 
     analyze = st.button(
-        "🔍 Analyze Food",
+        "Analyze Food",
         use_container_width=True
     )
 
@@ -485,15 +385,15 @@ if uploaded_file is not None:
         # ====================================================
 
         with st.spinner(
-            "🤖 AI is analyzing your food image..."
+            "Analyzing your food image..."
         ):
 
-            # Resize image
+            # Resize
             image_resized = image.resize(
                 IMG_SIZE
             )
 
-            # Convert image to NumPy
+            # Convert to NumPy
             image_array = np.array(
                 image_resized
             )
@@ -507,7 +407,7 @@ if uploaded_file is not None:
                 axis=0
             )
 
-            # Model prediction
+            # Prediction
             predictions = model.predict(
                 image_array,
                 verbose=0
@@ -540,7 +440,7 @@ if uploaded_file is not None:
 
 
             # =================================================
-            # FIND FRESH CLASS
+            # FRESH CLASS INDEX
             # =================================================
 
             fresh_class = (
@@ -553,7 +453,7 @@ if uploaded_file is not None:
 
 
             # =================================================
-            # FIND ROTTEN CLASS
+            # ROTTEN CLASS INDEX
             # =================================================
 
             rotten_class = (
@@ -566,25 +466,50 @@ if uploaded_file is not None:
 
 
             # =================================================
-            # FRESH PROBABILITY
+            # RAW PROBABILITIES
             # =================================================
 
-            fresh_percentage = float(
-                predictions[fresh_index] * 100
+            fresh_raw = float(
+                predictions[fresh_index]
+            )
+
+            rotten_raw = float(
+                predictions[rotten_index]
             )
 
 
             # =================================================
-            # ROTTEN PROBABILITY
+            # NORMALIZE FRESH + ROTTEN
+            #
+            # This makes:
+            # Fresh % + Rotten % = 100%
+            # for the detected food.
             # =================================================
 
-            rotten_percentage = float(
-                predictions[rotten_index] * 100
+            total = (
+                fresh_raw +
+                rotten_raw
             )
 
 
+            if total > 0:
+
+                fresh_percentage = float(
+                    (fresh_raw / total) * 100
+                )
+
+                rotten_percentage = float(
+                    (rotten_raw / total) * 100
+                )
+
+            else:
+
+                fresh_percentage = 0.0
+                rotten_percentage = 0.0
+
+
             # =================================================
-            # FINAL CONFIDENCE
+            # MODEL CONFIDENCE
             # =================================================
 
             confidence = float(
@@ -593,85 +518,23 @@ if uploaded_file is not None:
 
 
         # ====================================================
-        # ANALYSIS RESULT
+        # RESULT
         # ====================================================
 
         st.markdown("---")
 
         st.markdown(
-            "## 📊 Analysis Result"
-        )
-
-        st.write("")
-
-
-        # ====================================================
-        # FOOD DETECTED
-        # ====================================================
-
-        food_icon = FOOD_EMOJIS.get(
-            food_name,
-            "🍎"
-        )
-
-
-        col1, col2 = st.columns(2)
-
-
-        with col1:
-
-            st.metric(
-                label=f"{food_icon} Food Detected",
-                value=food_name
-            )
-
-
-        with col2:
-
-            if quality == "Fresh":
-
-                quality_icon = "🟢"
-
-            else:
-
-                quality_icon = "🔴"
-
-
-            st.metric(
-                label=f"{quality_icon} Quality",
-                value=quality
-            )
-
-
-        st.write("")
-
-
-        # ====================================================
-        # FOOD EMOJI
-        # ====================================================
-
-        st.markdown(
-            f"""
-            <div style="
-                text-align:center;
-                font-size:65px;
-                margin:15px 0;
-            ">
-                {food_icon}
-            </div>
-            """,
-            unsafe_allow_html=True
+            "## Analysis Result"
         )
 
 
         # ====================================================
-        # FRESH VS ROTTEN PERCENTAGES
+        # FRESHNESS ANALYSIS
         # ====================================================
 
         st.markdown(
             "### 🥗 Freshness Analysis"
         )
-
 
         fresh_col, rotten_col = st.columns(2)
 
@@ -712,11 +575,8 @@ if uploaded_file is not None:
             )
 
 
-        st.write("")
-
-
         # ====================================================
-        # VISUAL COMPARISON
+        # FRESH VS ROTTEN
         # ====================================================
 
         st.markdown(
@@ -729,7 +589,8 @@ if uploaded_file is not None:
             st.success(
                 f"🟢 **Fresh is more likely** "
                 f"({fresh_percentage:.2f}%) "
-                f"than Rotten ({rotten_percentage:.2f}%)."
+                f"than Rotten "
+                f"({rotten_percentage:.2f}%)."
             )
 
         elif rotten_percentage > fresh_percentage:
@@ -737,19 +598,19 @@ if uploaded_file is not None:
             st.error(
                 f"🔴 **Rotten is more likely** "
                 f"({rotten_percentage:.2f}%) "
-                f"than Fresh ({fresh_percentage:.2f}%)."
+                f"than Fresh "
+                f"({fresh_percentage:.2f}%)."
             )
 
         else:
 
             st.warning(
-                "⚖️ The model gives equal probability "
-                "to Fresh and Rotten."
+                "⚖️ Fresh and Rotten have equal probability."
             )
 
 
         # ====================================================
-        # FINAL RESULT
+        # FINAL PREDICTION
         # ====================================================
 
         st.markdown(
@@ -760,30 +621,17 @@ if uploaded_file is not None:
         if quality == "Fresh":
 
             st.success(
-                f"🟢 **{food_name} looks Fresh & Good!**\n\n"
-                f"😊 The AI predicts **Fresh** with "
+                f"**{food_name} looks Fresh & Good!**\n\n"
+                f"The AI predicts **Fresh** with "
                 f"**{fresh_percentage:.2f}% probability**."
-            )
-
-            st.info(
-                "🥗 **Condition:** Fresh-looking\n\n"
-                "✨ The image appears visually similar "
-                "to fresh food samples from the training dataset."
             )
 
         else:
 
             st.error(
-                f"🔴 **{food_name} looks Rotten / Spoiled!**\n\n"
-                f"⚠️ The AI predicts **Rotten** with "
+                f"**{food_name} looks Rotten / Spoiled!**\n\n"
+                f"The AI predicts **Rotten** with "
                 f"**{rotten_percentage:.2f}% probability**."
-            )
-
-            st.warning(
-                "🚫 **Recommendation:** Avoid consuming "
-                "this item if it also has visible spoilage, "
-                "mold, bad smell, unusual texture, or "
-                "discoloration."
             )
 
 
@@ -818,7 +666,7 @@ if uploaded_file is not None:
 
 
         # ====================================================
-        # CONFIDENCE INTERPRETATION
+        # CONFIDENCE MESSAGE
         # ====================================================
 
         if confidence >= 90:
@@ -839,116 +687,24 @@ if uploaded_file is not None:
 
             st.warning(
                 "⚠️ **Moderate confidence** — "
-                "try a clearer image with good lighting "
-                "for a better prediction."
+                "try a clearer image with good lighting."
             )
 
         else:
 
             st.warning(
                 "⚠️ **Low confidence** — "
-                "the model is not very certain about "
-                "this prediction. Try another clearer image."
+                "try another clearer image."
             )
-
-
-        # ====================================================
-        # SIMPLE SUMMARY
-        # ====================================================
-
-        st.markdown(
-            "### 📝 Simple Summary"
-        )
-
-
-        if quality == "Fresh":
-
-            st.write(
-                f"{food_icon} **Food:** {food_name}\n\n"
-                f"🟢 **Fresh:** {fresh_percentage:.2f}%\n\n"
-                f"🔴 **Rotten:** {rotten_percentage:.2f}%\n\n"
-                f"😊 **Result:** This image is more likely "
-                f"to be a fresh {food_name}.\n\n"
-                f"🎯 **AI Confidence:** {confidence:.2f}%"
-            )
-
-        else:
-
-            st.write(
-                f"{food_icon} **Food:** {food_name}\n\n"
-                f"🟢 **Fresh:** {fresh_percentage:.2f}%\n\n"
-                f"🔴 **Rotten:** {rotten_percentage:.2f}%\n\n"
-                f"⚠️ **Result:** This image is more likely "
-                f"to be a rotten {food_name}.\n\n"
-                f"🎯 **AI Confidence:** {confidence:.2f}%"
-            )
-
-
-        # ====================================================
-        # IMPORTANT NOTE
-        # ====================================================
-
-        st.info(
-            "💡 **Important:** These percentages represent "
-            "the model's visual classification probabilities. "
-            "They are not a laboratory measurement of food "
-            "freshness or safety."
-        )
 
 
 # ============================================================
-# NO IMAGE MESSAGE
+# NO IMAGE
 # ============================================================
 
 else:
 
     st.info(
-        "👆 Upload an image or take a photo "
+        "Upload an image or take a photo "
         "of a fruit or vegetable to start the analysis."
     )
-
-
-# ============================================================
-# SUPPORTED FOODS
-# ============================================================
-
-with st.expander(
-    "🥗 Supported Fruits & Vegetables"
-):
-
-    st.write(
-        "🍎 Apple  •  🍌 Banana  •  🥭 Mango  •  "
-        "🍊 Orange  •  🍓 Strawberry"
-    )
-
-    st.write(
-        "🫑 Bellpepper  •  🫑 Capsicum  •  "
-        "🥒 Bittergourd  •  🥕 Carrot"
-    )
-
-    st.write(
-        "🥒 Cucumber  •  🌱 Okra  •  🥔 Potato  •  "
-        "🍅 Tomato"
-    )
-
-
-# ============================================================
-# FOOTER
-# ============================================================
-
-st.markdown("---")
-
-st.markdown(
-    '<div class="footer-text">'
-    '🍎 AI Food Quality Analyzer • '
-    'MobileNetV2 Deep Learning Model'
-    '</div>',
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    '<div class="footer-text">'
-    'Freshness Classification • Fruits & Vegetables'
-    '</div>',
-    unsafe_allow_html=True
-)
